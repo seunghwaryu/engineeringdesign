@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         Thread t = new Thread(insertRunnable);
         t.start();
 
-        Button add_button = findViewById(R.id.open_add_button);
+        Button add_button = findViewById(R.id.add_schedule_button);
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button list_button = findViewById(R.id.open_list_button);
+        Button list_button = findViewById(R.id.open_schedule_button);
         list_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
