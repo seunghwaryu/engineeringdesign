@@ -10,5 +10,5 @@
     <!-- 새로 지정한 색깔 -->
     <color name="black">#404040</color>
     <color name="blue">#582FF5</color>
-    <color name="light_blue">#dcd5f5</color>
+    <color name="light_blue">#e3dff5</color>
 </resources>

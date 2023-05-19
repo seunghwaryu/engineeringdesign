@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="목록"
+        android:text="전체 일정 목록"
         android:textSize="20sp"
         android:textColor = "?android:textColorPrimary"
         android:textStyle="bold"/>
