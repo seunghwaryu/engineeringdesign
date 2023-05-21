@@ -1,54 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 일정 목록 화면 안의 리사이클러뷰 인터페이스 -->
+<!-- 일정 목록 화면 안의 리사이클러뷰 인터페이스(목록 안의 일정명, 마감일, 중요도 보여줌) -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <!-- id 제외하고 마음대로 수정바람 -->
+    <!-- id, TextView 속성 제외하고 마음대로 수정바람 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:padding="20dp">
 
-        <!-- 버튼들을 오른쪽으로 밀어주는 View -->
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="우선순위순"
-            android:background="@drawable/basic_button1"
+            android:text="일정명"
             android:textColor = "?android:textColorPrimary"
             android:textSize="16sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/item_deadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="마감일순"
-            android:background="@drawable/basic_button1"
+            android:text="마감일"
             android:textSize="16sp"
             android:textColor = "?android:textColorPrimary"
             android:maxLines="1"/>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/item_imp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="중요도순"
-            android:background="@drawable/basic_button1"
+            android:text="중요도"
             android:textSize="16sp"
-            android:textColor = "?android:textColorPrimary"
-            android:maxLines="1"/>
+            android:textColor = "?android:textColorPrimary" />
 
     </LinearLayout>
 
