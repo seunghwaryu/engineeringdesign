@@ -2,12 +2,16 @@ package com.dryice.ed2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
@@ -16,6 +20,7 @@ import com.dryice.ed2.database.ScheduleDB;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class AddScheduleActivity extends AppCompatActivity {
@@ -27,6 +32,23 @@ public class AddScheduleActivity extends AppCompatActivity {
     private RadioGroup mradioGroup;
     private Button mAddButton;
     private String improtance = "not inputted";
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    Date date = null;
+
+    Calendar myCalendar = Calendar.getInstance();
+
+    DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            String input_date = year+"/"+month+"/"+dayOfMonth;
+            mEditTextDeadline.setText(input_date);
+            try {
+                date = dateFormat.parse(input_date);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,19 +69,20 @@ public class AddScheduleActivity extends AppCompatActivity {
             public void run() {
                 Schedule schedule = new Schedule();
                 schedule.name = mEditTextName.getText().toString();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-                Date date = null;
-                try {
-                    date = dateFormat.parse(mEditTextDeadline.getText().toString());
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-
                 schedule.deadline = date;
                 schedule.importance = improtance;
                 ScheduleDB.getInstance(mContext).scheduleDao().insertAll(schedule);
             }
         }
+        mEditTextDeadline.setInputType(0);
+        mEditTextDeadline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(AddScheduleActivity.this, myDatePicker,
+                        myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
         mradioGroup = (RadioGroup) findViewById(R.id.radio_group);
         mradioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

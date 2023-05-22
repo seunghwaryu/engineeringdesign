@@ -18,7 +18,7 @@ import java.util.List;
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder> {
 
     private List<Schedule> scheduleList;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
     public MainRecyclerAdapter(List<Schedule> list) {
         scheduleList = list;
