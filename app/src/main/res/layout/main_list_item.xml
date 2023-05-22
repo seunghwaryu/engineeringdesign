@@ -5,21 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:background="@color/blue"/>
     <!-- id, TextView 속성 제외하고 마음대로 수정바람 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:gravity="center_vertical"
         android:padding="20dp">
-
         <TextView
             android:id="@+id/item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="일정명"
             android:textColor = "?android:textColorPrimary"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/item_deadline"
@@ -27,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="마감일"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor = "?android:textColorPrimary"
             android:maxLines="1"/>
 
@@ -37,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="중요도"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textColor = "?android:textColorPrimary" />
 
     </LinearLayout>
@@ -45,7 +47,8 @@
     <!--구분선-->
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#aaa"/>
+        android:layout_height="1.5dp"
+        android:background="@color/light_blue"/>
 
 </LinearLayout>
+
