@@ -40,7 +40,7 @@ public class AddScheduleActivity extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            String input_date = year+"/"+month+"/"+dayOfMonth;
+            String input_date = year+"/"+(month+1)+"/"+dayOfMonth;
             mEditTextDeadline.setText(input_date);
             try {
                 date = dateFormat.parse(input_date);
