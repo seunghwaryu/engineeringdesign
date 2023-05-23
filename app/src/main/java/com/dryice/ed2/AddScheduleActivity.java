@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.dryice.ed2.database.Schedule;
 import com.dryice.ed2.database.ScheduleDB;
@@ -102,14 +103,18 @@ public class AddScheduleActivity extends AppCompatActivity {
         });
 
         mAddButton.setOnClickListener(v -> {
+            if(improtance.equals("not inputted")) {
+                Toast.makeText(getApplicationContext(), "중요도를 선택해주세요.", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                InsertRunnable insertRunnable = new InsertRunnable();
+                Thread addThread = new Thread(insertRunnable);
+                addThread.start();
 
-            InsertRunnable insertRunnable = new InsertRunnable();
-            Thread addThread = new Thread(insertRunnable);
-            addThread.start();
-
-            Intent intent = new Intent(getApplicationContext(), MainListActivity.class);
-            startActivity(intent);
-            finish();
+                Intent intent = new Intent(getApplicationContext(), MainListActivity.class);
+                startActivity(intent);
+                finish();
+            }
 
         });
     }
