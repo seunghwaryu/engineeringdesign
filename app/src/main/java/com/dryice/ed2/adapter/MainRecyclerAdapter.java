@@ -28,17 +28,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         scheduleList = list;
     }
 
-    public interface OnItemClickListener {
-        void onItemClicked(int position);
-    }
-
-    private MainRecyclerAdapter.OnItemClickListener itemClickListener;
-
-
-    public void setOnItemClickListener (MainRecyclerAdapter.OnItemClickListener listener) {
-        itemClickListener = listener;
-    }
-
 
     @NonNull
     @Override
@@ -48,16 +37,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
         View view = inflater.inflate(R.layout.main_list_item, parent, false);
         MainRecyclerAdapter.ViewHolder vh = new MainRecyclerAdapter.ViewHolder(view);
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = vh.getAdapterPosition();
-//                Context context = view.getContext();
-//                Intent intent = new Intent(context,BookListActivity.class);
-//                ((MainActivity)context).startActivity(intent);
-            }
-        });
 
         return vh;
     }
@@ -112,7 +91,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
                 InsertRunnable insertRunnable = new InsertRunnable();
                 Thread t = new Thread(insertRunnable);
                 t.start();
-
+                checkBox.setChecked(false);
                 notifyDataSetChanged();
             });
         }
