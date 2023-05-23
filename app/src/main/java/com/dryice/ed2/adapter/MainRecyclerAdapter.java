@@ -1,9 +1,12 @@
 package com.dryice.ed2.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dryice.ed2.R;
 import com.dryice.ed2.database.Schedule;
+import com.dryice.ed2.database.ScheduleDB;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -19,7 +23,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     private List<Schedule> scheduleList;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-
+    private ScheduleDB scheduleDB;
     public MainRecyclerAdapter(List<Schedule> list) {
         scheduleList = list;
     }
@@ -60,11 +64,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Schedule item = scheduleList.get(position);
-        holder.name.setText(item.name);
-        String date = dateFormat.format(item.deadline);
-        holder.deadline.setText(date);
-        holder.imp.setText(item.importance);
+        holder.onBind(scheduleList.get(position),position);
+
     }
 
     @Override
@@ -76,14 +77,44 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         TextView name;
         TextView deadline;
         TextView imp;
+        CheckBox checkBox;
 
-        ViewHolder(View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.item_name);
             deadline = itemView.findViewById(R.id.item_deadline);
             imp = itemView.findViewById(R.id.item_imp);
+            checkBox = itemView.findViewById(R.id.item_cheakBox);
 
+        }
+
+        public void onBind(Schedule item, int position) {
+            name.setText(item.name);
+            String date = dateFormat.format(item.deadline);
+            deadline.setText(date);
+            imp.setText(item.importance);
+
+            checkBox.setOnClickListener(v ->  {
+                scheduleList.remove(item);
+
+                class InsertRunnable implements Runnable {
+                    @Override
+                    public void run() {
+                        try {
+                            scheduleDB.getInstance(itemView.getContext()).scheduleDao().delete(item);
+                        }
+                        catch (Exception e) {
+
+                        }
+                    }
+                }
+                InsertRunnable insertRunnable = new InsertRunnable();
+                Thread t = new Thread(insertRunnable);
+                t.start();
+
+                notifyDataSetChanged();
+            });
         }
     }
 }
