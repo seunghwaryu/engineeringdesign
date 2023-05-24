@@ -15,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="일정이름"
+            android:fontFamily="@font/suite_heavy"
             android:textStyle="bold"/>
 
         <EditText
@@ -36,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="마감기한"
+            android:fontFamily="@font/suite_heavy"
             android:textStyle="bold"/>
 
         <EditText
@@ -57,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="중요도"
+            android:fontFamily="@font/suite_heavy"
             android:textStyle="bold" />
 
         <RadioGroup
@@ -71,6 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
+                android:fontFamily="@font/suite_heavy"
                 android:layout_marginEnd="10dp" />
 
             <RadioButton
@@ -78,6 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
+                android:fontFamily="@font/suite_heavy"
                 android:layout_marginEnd="10dp" />
 
             <RadioButton
@@ -85,6 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="C"
+                android:fontFamily="@font/suite_heavy"
                 android:layout_marginEnd="10dp" />
         </RadioGroup>
     </LinearLayout>

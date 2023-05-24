@@ -7,57 +7,58 @@
     android:layout_height="match_parent"
     tools:context=".MainListActivity"
     android:orientation="vertical">
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="90dp"
         android:gravity="center_vertical"
         android:padding="10dp">
-        <View
-            android:layout_width="8dp"
-            android:layout_height="0dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:text="전체 일정 목록"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-        <View
-            android:layout_width="16dp"
-            android:layout_height="0dp"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/rank_order_btn"
             android:layout_width="75dp"
             android:layout_height="48dp"
-            android:background="@drawable/main_button1"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/function_button2"
+            android:fontFamily="@font/suite_bold"
             android:text="우선순위순"
             android:textColor="?android:textColorPrimary"
-            android:textSize="12sp" />
+            android:textSize="13.5sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/deadline_order_btn"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/deadline_order_btn"
             android:layout_width="75dp"
             android:layout_height="48dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/function_button2"
+            android:fontFamily="@font/suite_bold"
+            android:maxLines="1"
             android:text="마감일순"
-            android:background="@drawable/main_button1"
-            android:textSize="12sp"
-            android:textColor = "?android:textColorPrimary"
-            android:maxLines="1"/>
+            android:textColor="?android:textColorPrimary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imp_order_btn"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/imp_order_btn"
             android:layout_width="75dp"
             android:layout_height="48dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/function_button2"
+            android:fontFamily="@font/suite_bold"
+            android:maxLines="1"
             android:text="중요도순"
-            android:background="@drawable/main_button1"
-            android:textSize="12sp"
-            android:textColor = "?android:textColorPrimary"
-            android:maxLines="1"/>
+            android:textColor="?android:textColorPrimary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recycler_view"
