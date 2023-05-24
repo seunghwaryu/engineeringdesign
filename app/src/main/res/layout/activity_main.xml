@@ -25,9 +25,10 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/basic_button1"
+        android:background="@drawable/main_button1"
         android:text="1순위"
         android:textSize="18sp"
+        android:fontFamily="@font/suite_medium"
         app:layout_constraintBottom_toTopOf="@+id/second_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -38,9 +39,10 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/basic_button1"
+        android:background="@drawable/main_button2"
         android:text="2순위"
         android:textSize="18sp"
+        android:fontFamily="@font/suite_medium"
         app:layout_constraintBottom_toTopOf="@+id/third_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -51,9 +53,10 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/basic_button1"
+        android:background="@drawable/main_button3"
         android:text="3순위"
         android:textSize="18sp"
+        android:fontFamily="@font/suite_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -64,9 +67,11 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/basic_button2"
+        android:background="@drawable/function_button1"
         android:text="추가"
         android:textSize="16sp"
+        android:fontFamily="@font/suite_heavy"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/first_button"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -77,10 +82,9 @@
         android:layout_marginBottom="12dp"
         android:text="목록"
         android:textSize="16sp"
-        android:background="@drawable/basic_button2"
+        android:background="@drawable/function_button1"
+        android:fontFamily="@font/suite_heavy"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/first_button"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- 추후 계속 수정 예정.. 5/18 -->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

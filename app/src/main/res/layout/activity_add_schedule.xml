@@ -89,11 +89,14 @@
         </RadioGroup>
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="추가"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/suite_heavy"
+        android:background="@drawable/function_button1"
         android:layout_margin="20dp"
         android:layout_gravity="right"/>
 
