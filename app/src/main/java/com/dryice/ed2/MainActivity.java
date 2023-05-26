@@ -12,6 +12,7 @@ import com.dryice.ed2.database.Schedule;
 import com.dryice.ed2.database.ScheduleDB;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     scheduleList = ScheduleDB.getInstance(mContext).scheduleDao().getAll();
+                    Priority priority = new Priority();
+                    priority.cal_sum(mContext);
+
                 }
                 catch (Exception e) {
 

@@ -20,5 +20,8 @@ public class Schedule {
     @ColumnInfo(name="importance")
     public String importance;
 
+    @ColumnInfo(name="sum")
+    public int sum;
+
 
 }

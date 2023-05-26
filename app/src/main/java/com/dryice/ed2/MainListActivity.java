@@ -40,6 +40,9 @@ public class MainListActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
+                    Priority priority = new Priority();
+                    priority.cal_sum(mContext);
+
                     scheduleList = ScheduleDB.getInstance(mContext).scheduleDao().getAll();
                     mainRecyclerAdapter = new MainRecyclerAdapter(scheduleList);
                     mainRecyclerAdapter.notifyDataSetChanged();
