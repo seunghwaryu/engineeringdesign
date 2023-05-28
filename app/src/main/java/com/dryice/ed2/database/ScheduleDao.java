@@ -16,10 +16,16 @@ public interface ScheduleDao {
     @Query("SELECT importance FROM schedule WHERE id = :tid")
     String getImportance(int tid);
 
+    @Query("SELECT checked FROM schedule WHERE id = :tid")
+    boolean getChecked(int tid);
+
     @Query("SELECT * FROM schedule WHERE id IN (:scheduleIds)")
     List<Schedule> loadAllByIds(int[] scheduleIds);
     @Query("UPDATE schedule SET sum = :rank WHERE id = :tid")
     void updateSum(int tid,int rank);
+
+    @Query("UPDATE schedule SET checked = :check WHERE id = :tid")
+    void updateChecked(int tid,boolean check);
 
     @Insert
     void insertAll(Schedule... schedules);

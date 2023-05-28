@@ -77,9 +77,11 @@ public class AddScheduleActivity extends AppCompatActivity {
                 schedule.deadline = date;
                 schedule.importance = improtance;
                 schedule.sum = 0;
+                schedule.checked=false;
                 ScheduleDB.getInstance(mContext).scheduleDao().insertAll(schedule);
             }
         }
+
         mEditTextDeadline.setInputType(0);
         mEditTextDeadline.setOnClickListener(new View.OnClickListener() {
             @Override

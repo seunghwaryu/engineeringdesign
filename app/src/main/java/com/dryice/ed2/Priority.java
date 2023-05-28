@@ -47,7 +47,6 @@ public class Priority {
 
         long Sec = (date.getTime() - today.getTime()) / 1000; // 초
         long Days = (Sec / (24*60*60)); // 일자수
-        Log.v("test",String.valueOf(Days));
 
         return (int)Days;
     }

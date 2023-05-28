@@ -23,6 +23,9 @@ public class Schedule {
     @ColumnInfo(name="sum")
     public int sum;
 
+    @ColumnInfo(name="checked")
+    public boolean checked;
+
     public String getName() {
         return name;
     }

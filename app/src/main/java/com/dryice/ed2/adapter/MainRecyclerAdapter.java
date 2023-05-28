@@ -1,6 +1,7 @@
 package com.dryice.ed2.adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,6 +88,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             String date = dateFormat.format(item.deadline);
             deadline.setText(date);
             imp.setText(item.importance);
+            checkBox.setChecked(item.checked);
+            strikethrough(item.checked);
 
             trash_btn.setOnClickListener(v ->  {
                 scheduleList.remove(item);
@@ -107,6 +110,41 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
                 t.start();
                 notifyDataSetChanged();
             });
+
+            checkBox.setOnClickListener(v -> {
+                class InsertRunnable implements Runnable {
+                    @Override
+                    public void run() {
+                        try {
+                            scheduleDB.getInstance(itemView.getContext()).scheduleDao().updateChecked(item.id,!item.checked);
+                            item.checked = scheduleDB.getInstance(itemView.getContext()).scheduleDao().getChecked(item.id);
+                            notifyDataSetChanged();
+                        }
+                        catch (Exception e) {
+
+                        }
+                    }
+                }
+                InsertRunnable insertRunnable = new InsertRunnable();
+                Thread t = new Thread(insertRunnable);
+
+                t.start();
+                strikethrough(!item.checked);
+
+            });
+        }
+
+        void strikethrough(boolean cheak) {
+            if(cheak) {
+                name.setPaintFlags(name.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                deadline.setPaintFlags(deadline.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+                imp.setPaintFlags(imp.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+
+            } else {
+                name.setPaintFlags(0);
+                deadline.setPaintFlags(0);
+                imp.setPaintFlags(0);
+            }
         }
     }
 
