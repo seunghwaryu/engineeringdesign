@@ -4,7 +4,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ffffff">
+    <!--구분선-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#aaa"/>
 
     <!-- id, TextView 속성 제외하고 마음대로 수정바람 -->
     <LinearLayout
@@ -12,6 +18,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:padding="20dp">
+
 
         <TextView
             android:id="@+id/item_name"
@@ -54,11 +61,5 @@
             android:button="@android:color/transparent"
             android:background="@drawable/check_box"/>
     </LinearLayout>
-
-    <!--구분선-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#aaa"/>
 
 </LinearLayout>

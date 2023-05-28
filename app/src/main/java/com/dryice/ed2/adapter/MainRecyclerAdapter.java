@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dryice.ed2.R;
@@ -22,7 +23,6 @@ import java.util.Comparator;
 import java.util.List;
 
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder> {
-
     private List<Schedule> scheduleList;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
     private ScheduleDB scheduleDB;
@@ -30,6 +30,11 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         scheduleList = list;
     }
 
+    Context context;
+
+    public MainRecyclerAdapter(Context context){
+        this.context = context;
+    }
 
     @NonNull
     @Override
@@ -46,7 +51,11 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.onBind(scheduleList.get(position),position);
-
+        if (position % 2 == 0) {
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.white));
+        } else {
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), R.color.gray));
+        }
     }
 
     @Override
