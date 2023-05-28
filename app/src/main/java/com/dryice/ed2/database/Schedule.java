@@ -23,4 +23,19 @@ public class Schedule {
     @ColumnInfo(name="sum")
     public int sum;
 
+    public String getName() {
+        return name;
+    }
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public int getSum() {
+        return sum;
+    }
+
+    public String getImportance() {
+        return importance;
+    }
+
 }

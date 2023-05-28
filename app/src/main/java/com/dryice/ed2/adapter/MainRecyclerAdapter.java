@@ -17,6 +17,8 @@ import com.dryice.ed2.database.Schedule;
 import com.dryice.ed2.database.ScheduleDB;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder> {
@@ -96,4 +98,18 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             });
         }
     }
+
+    public void orderPriority(){
+        scheduleList.sort(Comparator.comparing(Schedule::getSum).reversed().thenComparing(Schedule::getName)); // 우선순위 순 정렬
+        notifyDataSetChanged();
+    }
+    public void orderUrgency(){
+        scheduleList.sort(Comparator.comparing(Schedule::getDeadline).thenComparing(Schedule::getName)); // 긴급도 순 정렬
+        notifyDataSetChanged();
+    }
+    public void orderImportance(){
+        scheduleList.sort(Comparator.comparing(Schedule::getImportance).thenComparing(Schedule::getName)); // 중요도 순 정렬
+        notifyDataSetChanged();
+    }
+
 }

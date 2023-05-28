@@ -1,6 +1,7 @@
 package com.dryice.ed2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import com.dryice.ed2.database.Schedule;
 import com.dryice.ed2.database.ScheduleDB;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainListActivity extends AppCompatActivity {
@@ -45,7 +47,7 @@ public class MainListActivity extends AppCompatActivity {
                     priority.cal_sum(mContext);
 
                     scheduleList = ScheduleDB.getInstance(mContext).scheduleDao().getAll();
-                    Collections.sort(scheduleList, (a, b) -> b.sum - a.sum);
+                    scheduleList.sort(Comparator.comparing(Schedule::getSum).reversed().thenComparing(Schedule::getName)); // 우선순위 순 정렬
                     mainRecyclerAdapter = new MainRecyclerAdapter(scheduleList);
                     mainRecyclerAdapter.notifyDataSetChanged();
 
@@ -61,6 +63,20 @@ public class MainListActivity extends AppCompatActivity {
         InsertRunnable insertRunnable = new InsertRunnable();
         Thread t = new Thread(insertRunnable);
         t.start();
+
+        AppCompatButton rank_order_btn = findViewById(R.id.rank_order_btn);
+        rank_order_btn.setOnClickListener(v -> {
+            mainRecyclerAdapter.orderPriority();
+        });
+        AppCompatButton deadline_order_btn = findViewById(R.id.deadline_order_btn);
+        deadline_order_btn.setOnClickListener(v -> {
+            mainRecyclerAdapter.orderUrgency();
+        });
+
+        AppCompatButton imp_order_btn = findViewById(R.id.imp_order_btn);
+        imp_order_btn.setOnClickListener(v -> {
+            mainRecyclerAdapter.orderImportance();
+        });
 
     }
 
