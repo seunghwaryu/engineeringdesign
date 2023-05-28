@@ -19,6 +19,10 @@
         android:gravity="center_vertical"
         android:padding="20dp">
 
+        <CheckBox
+            android:id="@+id/item_cheakBox"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
 
         <TextView
             android:id="@+id/item_name"
@@ -54,12 +58,12 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <CheckBox
-            android:id="@+id/item_cheakBox"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/item_trash"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:button="@android:color/transparent"
-            android:background="@drawable/check_box"/>
+            android:background="@drawable/trash_button"/>
+
     </LinearLayout>
 
 </LinearLayout>
