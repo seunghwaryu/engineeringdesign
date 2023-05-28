@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -67,6 +68,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         TextView name;
         TextView deadline;
         TextView imp;
+        AppCompatButton trash_btn;
         CheckBox checkBox;
 
         public ViewHolder(@NonNull View itemView) {
@@ -75,7 +77,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             name = itemView.findViewById(R.id.item_name);
             deadline = itemView.findViewById(R.id.item_deadline);
             imp = itemView.findViewById(R.id.item_imp);
-            checkBox = itemView.findViewById(R.id.item_cheakBox);
+            trash_btn = itemView.findViewById(R.id.item_trash);
+            checkBox = itemView.findViewById(R.id.item_checkBox);
 
         }
 
@@ -85,7 +88,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             deadline.setText(date);
             imp.setText(item.importance);
 
-            checkBox.setOnClickListener(v ->  {
+            trash_btn.setOnClickListener(v ->  {
                 scheduleList.remove(item);
 
                 class InsertRunnable implements Runnable {
@@ -102,7 +105,6 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
                 InsertRunnable insertRunnable = new InsertRunnable();
                 Thread t = new Thread(insertRunnable);
                 t.start();
-                checkBox.setChecked(false);
                 notifyDataSetChanged();
             });
         }

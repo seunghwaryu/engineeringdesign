@@ -20,9 +20,9 @@
         android:padding="20dp">
 
         <CheckBox
-            android:id="@+id/item_cheakBox"
+            android:id="@+id/item_checkBox"
             android:layout_width="20dp"
-            android:layout_height="20dp"/>
+            android:layout_height="20dp" />
 
         <TextView
             android:id="@+id/item_name"

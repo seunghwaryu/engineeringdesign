@@ -35,7 +35,7 @@ public class AddScheduleActivity extends AppCompatActivity {
     private RadioGroup mradioGroup;
     private Button mAddButton;
     private String improtance = "not inputted";
-    private int sum = 0;
+
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
     Date date = null;
 
@@ -76,7 +76,7 @@ public class AddScheduleActivity extends AppCompatActivity {
                 schedule.name = mEditTextName.getText().toString();
                 schedule.deadline = date;
                 schedule.importance = improtance;
-                schedule.sum = sum;
+                schedule.sum = 0;
                 ScheduleDB.getInstance(mContext).scheduleDao().insertAll(schedule);
             }
         }
@@ -96,15 +96,12 @@ public class AddScheduleActivity extends AppCompatActivity {
                 switch (checkedId) {
                     case R.id.raido_a:
                         improtance = "A";
-                        sum = 10;
                         break;
                     case R.id.raido_b:
                         improtance = "B";
-                        sum = 5;
                         break;
                     case R.id.raido_c:
                         improtance = "C";
-                        sum = 0;
                         break;
                 }
             }
