@@ -23,5 +23,4 @@ public class Schedule {
     @ColumnInfo(name="sum")
     public int sum;
 
-
 }

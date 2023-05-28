@@ -11,6 +11,7 @@ import com.dryice.ed2.adapter.MainRecyclerAdapter;
 import com.dryice.ed2.database.Schedule;
 import com.dryice.ed2.database.ScheduleDB;
 
+import java.util.Collections;
 import java.util.List;
 
 public class MainListActivity extends AppCompatActivity {
@@ -44,6 +45,7 @@ public class MainListActivity extends AppCompatActivity {
                     priority.cal_sum(mContext);
 
                     scheduleList = ScheduleDB.getInstance(mContext).scheduleDao().getAll();
+                    Collections.sort(scheduleList, (a, b) -> b.sum - a.sum);
                     mainRecyclerAdapter = new MainRecyclerAdapter(scheduleList);
                     mainRecyclerAdapter.notifyDataSetChanged();
 
