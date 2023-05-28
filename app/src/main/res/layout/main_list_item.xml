@@ -42,11 +42,15 @@
             android:textColor = "?android:textColorPrimary"
             android:fontFamily="@font/suite_bold"/>
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
         <CheckBox
             android:id="@+id/item_cheakBox"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="150dp"
             android:button="@android:color/transparent"
             android:background="@drawable/check_box"/>
     </LinearLayout>
