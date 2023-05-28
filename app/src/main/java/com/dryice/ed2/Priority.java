@@ -37,7 +37,7 @@ public class Priority {
             temp = map.get(scheduleDB.scheduleDao().getImportance(tid))+(13-cal_date(arrayList.get(i).deadline)*3);
             scheduleDB.scheduleDao().updateSum(tid,temp);
         }
-    }
+    } //우선순위 합계 계산
     public int cal_date(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         Date now = new Date();
@@ -49,5 +49,5 @@ public class Priority {
         long Days = (Sec / (24*60*60)); // 일자수
 
         return (int)Days;
-    }
+    } //날짜 계산
 }

@@ -15,14 +15,15 @@
     <!-- id, TextView 속성 제외하고 마음대로 수정바람 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:gravity="center_vertical"
         android:padding="20dp">
 
         <CheckBox
             android:id="@+id/item_checkBox"
             android:layout_width="20dp"
-            android:layout_height="20dp" />
+            android:layout_height="20dp"
+            android:layout_marginRight="12dp"/>
 
         <TextView
             android:id="@+id/item_name"
@@ -30,16 +31,16 @@
             android:layout_height="wrap_content"
             android:text="일정명"
             android:textColor = "?android:textColorPrimary"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:fontFamily="@font/suite_medium"/>
 
         <TextView
             android:id="@+id/item_deadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:text="마감일"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:textColor = "?android:textColorPrimary"
             android:fontFamily="@font/suite_medium"/>
 
@@ -47,9 +48,9 @@
             android:id="@+id/item_imp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:text="중요도"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor = "?android:textColorPrimary"
             android:fontFamily="@font/suite_bold"/>
 

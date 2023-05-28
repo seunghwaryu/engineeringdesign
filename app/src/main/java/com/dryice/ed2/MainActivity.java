@@ -74,5 +74,5 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         ScheduleDB.destroyInstance();
         scheduleDB = null;
-    }
+    } //메모리 누수 방지
 }
