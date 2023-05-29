@@ -43,15 +43,22 @@ public class Priority {
         }
     } //우선순위 합계 계산
     public int cal_date(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-        Date now = new Date();
-        String conversion = dateFormat.format(now);
-        ParsePosition position = new ParsePosition(0);
-        Date today = dateFormat.parse(conversion,position);
+        Date today = getToday();
 
         long Sec = (date.getTime() - today.getTime()) / 1000; // 초
         long Days = (Sec / (24*60*60)); // 일자수
 
         return (int)Days;
     } //날짜 계산
+
+    // 오늘 날짜 구하기
+    public Date getToday() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date now = new Date();
+        String conversion = dateFormat.format(now);
+        ParsePosition position = new ParsePosition(0);
+        Date today = dateFormat.parse(conversion,position);
+
+        return today;
+    }
 }

@@ -1,5 +1,7 @@
 package com.dryice.ed2;
 
+import static android.text.TextUtils.isEmpty;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -112,8 +114,8 @@ public class AddScheduleActivity extends AppCompatActivity {
 
         // 일정 추가
         mAddButton.setOnClickListener(v -> {
-            if(improtance.equals("not inputted")) {
-                Toast.makeText(getApplicationContext(), "중요도를 선택해주세요.", Toast.LENGTH_SHORT).show();
+            if(improtance.equals("not inputted") || date == null || mEditTextName.getText().toString().length() == 0) {
+                Toast.makeText(getApplicationContext(), "모든 항목을 입력해주세요.", Toast.LENGTH_SHORT).show();
             }
             else {
                 InsertRunnable insertRunnable = new InsertRunnable();

@@ -6,6 +6,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -18,6 +20,9 @@ public interface ScheduleDao {
 
     @Query("SELECT checked FROM schedule WHERE id = :tid")
     boolean getChecked(int tid);
+
+    @Query("SELECT * FROM schedule WHERE deadline = :today")
+    List<Schedule> getTodayList(Date today);
 
     @Query("SELECT * FROM schedule WHERE id IN (:scheduleIds)")
     List<Schedule> loadAllByIds(int[] scheduleIds);
