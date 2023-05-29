@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/zeroth_button"
         android:layout_width="300dp"
@@ -71,7 +70,7 @@
         android:fontFamily="@font/suite_heavy"
         android:text="+"
         android:textColor="#ffffff"
-        android:textSize="18sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/first_button"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -84,7 +83,7 @@
         android:fontFamily="@font/suite_heavy"
         android:text="≡"
         android:textColor="#ffffff"
-        android:textSize="18sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/first_button"
         app:layout_constraintEnd_toEndOf="parent" />
 

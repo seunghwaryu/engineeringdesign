@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dryice.ed2.MainListActivity;
 import com.dryice.ed2.R;
 import com.dryice.ed2.database.Schedule;
 import com.dryice.ed2.database.ScheduleDB;
@@ -140,13 +143,10 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         void strikethrough(boolean cheak) {
             if(cheak) {
                 name.setPaintFlags(name.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
-                deadline.setPaintFlags(deadline.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
-                imp.setPaintFlags(imp.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
 
             } else {
                 name.setPaintFlags(0);
-                deadline.setPaintFlags(0);
-                imp.setPaintFlags(0);
+
             }
         }
     }

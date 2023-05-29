@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="#ffffff">
+
     <!--구분선-->
     <View
         android:layout_width="match_parent"
@@ -41,7 +42,7 @@
             android:layout_marginLeft="10dp"
             android:text="마감일"
             android:textSize="15sp"
-            android:textColor = "?android:textColorPrimary"
+            android:textColor = "@color/black"
             android:fontFamily="@font/suite_medium"/>
 
         <TextView
@@ -51,7 +52,7 @@
             android:layout_marginLeft="10dp"
             android:text="중요도"
             android:textSize="18sp"
-            android:textColor = "?android:textColorPrimary"
+            android:textColor = "@color/red1"
             android:fontFamily="@font/suite_bold"/>
 
         <View
