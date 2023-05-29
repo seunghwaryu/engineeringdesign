@@ -87,4 +87,14 @@
         app:layout_constraintBottom_toTopOf="@+id/first_button"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/info_btn"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:text="*"
+        android:textColor="@color/red1"
+        android:background="@drawable/function_button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

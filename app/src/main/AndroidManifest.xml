@@ -18,6 +18,8 @@
             android:name=".AddScheduleActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+        <activity android:name=".InfoActivity"
+            android:exported="true"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
