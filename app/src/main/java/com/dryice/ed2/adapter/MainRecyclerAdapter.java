@@ -92,6 +92,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             checkBox.setChecked(item.checked);
             strikethrough(item.checked);
 
+            //일정 삭제
             trash_btn.setOnClickListener(v ->  {
                 scheduleList.remove(item);
                 notifyDataSetChanged();
@@ -112,6 +113,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
                 t.start();
             });
 
+            // 일정 밑줄 긋기
             checkBox.setOnClickListener(v -> {
                 class UpateRunnable implements Runnable {
                     @Override
@@ -134,6 +136,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             });
         }
 
+        // 체크 여부에 따라 밑줄 긋기
         void strikethrough(boolean cheak) {
             if(cheak) {
                 name.setPaintFlags(name.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);

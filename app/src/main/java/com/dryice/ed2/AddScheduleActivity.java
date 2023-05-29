@@ -109,6 +109,8 @@ public class AddScheduleActivity extends AppCompatActivity {
             }
         });
 
+
+        // 일정 추가
         mAddButton.setOnClickListener(v -> {
             if(improtance.equals("not inputted")) {
                 Toast.makeText(getApplicationContext(), "중요도를 선택해주세요.", Toast.LENGTH_SHORT).show();

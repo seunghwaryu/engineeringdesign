@@ -34,7 +34,11 @@ public class Priority {
         int temp = 0;
         for(int i = 0;i<arrayList.size();i++) {
             int tid = arrayList.get(i).id;
-            temp = map.get(scheduleDB.scheduleDao().getImportance(tid))+(13-cal_date(arrayList.get(i).deadline)*3);
+            int dDay = cal_date(arrayList.get(i).deadline);
+            if(dDay != 0)
+                temp = map.get(scheduleDB.scheduleDao().getImportance(tid))+(10-(dDay-1)*3);
+            else
+                temp = map.get(scheduleDB.scheduleDao().getImportance(tid))+15;
             scheduleDB.scheduleDao().updateSum(tid,temp);
         }
     } //우선순위 합계 계산
