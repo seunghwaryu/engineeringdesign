@@ -26,8 +26,8 @@ public class Priority {
         put("C",0);
     }};
 
-    public void cal_sum(Context mContext) {
-        scheduleDB = ScheduleDB.getInstance(mContext);
+    public void cal_sum(ScheduleDB scheduleDB) {
+        this.scheduleDB = scheduleDB;
         scheduleList = scheduleDB.scheduleDao().getAll();
         ArrayList<Schedule> arrayList = new ArrayList<Schedule>();
         arrayList.addAll(scheduleList);

@@ -28,8 +28,9 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     private List<Schedule> scheduleList;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
     private ScheduleDB scheduleDB;
-    public MainRecyclerAdapter(List<Schedule> list) {
+    public MainRecyclerAdapter(List<Schedule> list,ScheduleDB scheduleDB) {
         scheduleList = list;
+        this.scheduleDB = scheduleDB;
     }
 
     Context context;
@@ -93,40 +94,39 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
             trash_btn.setOnClickListener(v ->  {
                 scheduleList.remove(item);
+                notifyDataSetChanged();
 
-                class InsertRunnable implements Runnable {
+                class DeleteRunnable implements Runnable {
                     @Override
                     public void run() {
                         try {
-                            scheduleDB.getInstance(itemView.getContext()).scheduleDao().delete(item);
+                            scheduleDB.scheduleDao().delete(item);
                         }
                         catch (Exception e) {
 
                         }
                     }
                 }
-                InsertRunnable insertRunnable = new InsertRunnable();
-                Thread t = new Thread(insertRunnable);
+                DeleteRunnable deleteRunnable = new DeleteRunnable();
+                Thread t = new Thread(deleteRunnable);
                 t.start();
-                notifyDataSetChanged();
             });
 
             checkBox.setOnClickListener(v -> {
-                class InsertRunnable implements Runnable {
+                class UpateRunnable implements Runnable {
                     @Override
                     public void run() {
                         try {
-                            scheduleDB.getInstance(itemView.getContext()).scheduleDao().updateChecked(item.id,!item.checked);
-                            item.checked = scheduleDB.getInstance(itemView.getContext()).scheduleDao().getChecked(item.id);
-                            notifyDataSetChanged();
+                            scheduleDB.scheduleDao().updateChecked(item.id,!item.checked);
+                            item.checked = scheduleDB.scheduleDao().getChecked(item.id);
                         }
                         catch (Exception e) {
 
                         }
                     }
                 }
-                InsertRunnable insertRunnable = new InsertRunnable();
-                Thread t = new Thread(insertRunnable);
+                UpateRunnable upateRunnable = new UpateRunnable();
+                Thread t = new Thread(upateRunnable);
 
                 t.start();
                 strikethrough(!item.checked);

@@ -65,20 +65,20 @@ public class AddScheduleActivity extends AppCompatActivity {
         mEditTextName = (EditText) findViewById(R.id.edit_name);
         mEditTextDeadline = (EditText) findViewById(R.id.edit_deadline);
 
-        scheduleDB = ScheduleDB.getInstance(this);
         mContext = getApplicationContext();
 
         class InsertRunnable implements Runnable {
 
             @Override
             public void run() {
+                scheduleDB = ScheduleDB.getInstance(mContext);
                 Schedule schedule = new Schedule();
                 schedule.name = mEditTextName.getText().toString();
                 schedule.deadline = date;
                 schedule.importance = improtance;
                 schedule.sum = 0;
                 schedule.checked=false;
-                ScheduleDB.getInstance(mContext).scheduleDao().insertAll(schedule);
+                scheduleDB.scheduleDao().insertAll(schedule);
             }
         }
 

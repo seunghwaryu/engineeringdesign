@@ -32,10 +32,6 @@ public class MainListActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
 
         mContext = getApplicationContext();
-        mainRecyclerAdapter = new MainRecyclerAdapter(scheduleList);
-        // DB 생성
-        scheduleDB = ScheduleDB.getInstance(this);
-
 
         // main thread에서 DB 접근 불가 => data 읽고 쓸 때 thread 사용하기
         class InsertRunnable implements Runnable {
@@ -43,13 +39,13 @@ public class MainListActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
+                    scheduleDB = ScheduleDB.getInstance(mContext);
                     Priority priority = new Priority();
-                    priority.cal_sum(mContext);
+                    priority.cal_sum(scheduleDB);
 
-                    scheduleList = ScheduleDB.getInstance(mContext).scheduleDao().getAll();
+                    scheduleList = scheduleDB.scheduleDao().getAll();
                     scheduleList.sort(Comparator.comparing(Schedule::getSum).reversed().thenComparing(Schedule::getName)); // 우선순위 순 정렬
-                    mainRecyclerAdapter = new MainRecyclerAdapter(scheduleList);
-                    mainRecyclerAdapter.notifyDataSetChanged();
+                    mainRecyclerAdapter = new MainRecyclerAdapter(scheduleList,scheduleDB);
 
                     mRecyclerView.setAdapter(mainRecyclerAdapter);
                     LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false);

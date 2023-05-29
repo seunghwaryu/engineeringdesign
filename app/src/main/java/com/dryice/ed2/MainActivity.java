@@ -27,9 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mContext = getApplicationContext();
-        // DB 생성
-        scheduleDB = ScheduleDB.getInstance(this);
-
 
         // main thread에서 DB 접근 불가 => data 읽고 쓸 때 thread 사용하기
         class InsertRunnable implements Runnable {
@@ -37,9 +34,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    scheduleList = ScheduleDB.getInstance(mContext).scheduleDao().getAll();
+                    scheduleDB = ScheduleDB.getInstance(mContext);
+                    scheduleList = scheduleDB.scheduleDao().getAll();
                     Priority priority = new Priority();
-                    priority.cal_sum(mContext);
+                    priority.cal_sum(scheduleDB);
 
                 }
                 catch (Exception e) {
