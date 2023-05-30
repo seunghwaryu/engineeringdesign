@@ -1,17 +1,12 @@
 package com.dryice.ed2;
 
-import android.content.Context;
-import android.util.Log;
-
 import com.dryice.ed2.database.Schedule;
 import com.dryice.ed2.database.ScheduleDB;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;

@@ -12,7 +12,6 @@ import com.dryice.ed2.adapter.MainRecyclerAdapter;
 import com.dryice.ed2.database.Schedule;
 import com.dryice.ed2.database.ScheduleDB;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 

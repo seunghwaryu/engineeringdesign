@@ -7,16 +7,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.dryice.ed2.database.Schedule;
 import com.dryice.ed2.database.ScheduleDB;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -28,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private Button first_button;
     private Button second_button;
     private Button third_button;
+    private Button list_button;
+    private Button info_button;
+    private Button add_button;
 
 
     @Override
@@ -41,31 +40,9 @@ public class MainActivity extends AppCompatActivity {
         first_button = findViewById(R.id.first_button);
         second_button = findViewById(R.id.second_button);
         third_button = findViewById(R.id.third_button);
-        Priority priority = new Priority();
-        // main thread에서 DB 접근 불가 => data 읽고 쓸 때 thread 사용하기
-        class InsertRunnable implements Runnable {
-
-            @Override
-            public void run() {
-                try {
-                    scheduleDB = ScheduleDB.getInstance(mContext);
-                    scheduleList = scheduleDB.scheduleDao().getTodayList(priority.getToday());
-                    scheduleList.sort(Comparator.comparing(Schedule::getSum).reversed().thenComparing(Schedule::getName));
-                    todaySchedule(scheduleList);
-                    priority.cal_sum(scheduleDB);
-
-                }
-                catch (Exception e) {
-
-                }
-            }
-        }
-        InsertRunnable insertRunnable = new InsertRunnable();
-        Thread t = new Thread(insertRunnable);
-        t.start();
 
 
-        Button add_button = findViewById(R.id.add_schedule_button);
+        add_button = findViewById(R.id.add_schedule_button);
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button list_button = findViewById(R.id.open_schedule_button);
+        list_button = findViewById(R.id.open_schedule_button);
         list_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button info_button = findViewById(R.id.info_btn);
+        info_button = findViewById(R.id.info_btn);
         info_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +84,24 @@ public class MainActivity extends AppCompatActivity {
         third_button.setOnClickListener(v -> {
             dialog(3);
         });
+    }
+    class InsertRunnable implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                Priority priority = new Priority();
+                scheduleDB = ScheduleDB.getInstance(mContext);
+                scheduleList = scheduleDB.scheduleDao().getTodayList(priority.getToday());
+                scheduleList.sort(Comparator.comparing(Schedule::getSum).reversed().thenComparing(Schedule::getName));
+                todaySchedule(scheduleList);
+                priority.cal_sum(scheduleDB);
+
+            }
+            catch (Exception e) {
+
+            }
+        }
     }
 
     public void todaySchedule(List<Schedule> list) {
@@ -179,6 +174,15 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        InsertRunnable insertRunnable = new InsertRunnable();
+        Thread t = new Thread(insertRunnable);
+        t.start();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
