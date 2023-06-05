@@ -39,9 +39,6 @@ public class MainListActivity extends AppCompatActivity {
             public void run() {
                 try {
                     scheduleDB = ScheduleDB.getInstance(mContext);
-                    Priority priority = new Priority();
-                    priority.cal_sum(scheduleDB);
-
                     scheduleList = scheduleDB.scheduleDao().getAll();
                     scheduleList.sort(Comparator.comparing(Schedule::getSum).reversed().thenComparing(Schedule::getName)); // 우선순위 순 정렬
                     mainRecyclerAdapter = new MainRecyclerAdapter(scheduleList,scheduleDB);

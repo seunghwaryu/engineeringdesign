@@ -85,16 +85,16 @@ public class MainActivity extends AppCompatActivity {
             dialog(3);
         });
     }
-    class InsertRunnable implements Runnable {
+    class ReadRunnable implements Runnable {
 
         @Override
         public void run() {
             try {
                 Priority priority = new Priority();
                 scheduleDB = ScheduleDB.getInstance(mContext);
-                scheduleList = scheduleDB.scheduleDao().getTodayList(priority.getToday());
+                scheduleList = scheduleDB.scheduleDao().getTodayList(priority.today);
                 scheduleList.sort(Comparator.comparing(Schedule::getSum).reversed().thenComparing(Schedule::getName));
-                todaySchedule(scheduleList);
+                show_todaySchedule(scheduleList);
                 priority.cal_sum(scheduleDB);
 
             }
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void todaySchedule(List<Schedule> list) {
+    public void show_todaySchedule(List<Schedule> list) {
         switch (list.size()) {
             case 0:
                 zeroth_button.setText("오늘의 일정 완료");
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                             scheduleDB = ScheduleDB.getInstance(mContext);
                             scheduleDB.scheduleDao().delete(scheduleList.get(index));
                             scheduleList.remove(index);
-                            todaySchedule(scheduleList);
+                            show_todaySchedule(scheduleList);
 
                         }
                         catch (Exception e) {
@@ -178,8 +178,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        InsertRunnable insertRunnable = new InsertRunnable();
-        Thread t = new Thread(insertRunnable);
+        ReadRunnable readRunnable = new ReadRunnable();
+        Thread t = new Thread(readRunnable);
         t.start();
     }
 

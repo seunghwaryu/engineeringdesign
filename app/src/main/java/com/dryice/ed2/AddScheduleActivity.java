@@ -69,6 +69,7 @@ public class AddScheduleActivity extends AppCompatActivity {
 
         mContext = getApplicationContext();
 
+        Priority priority = new Priority();
         class InsertRunnable implements Runnable {
 
             @Override
@@ -78,7 +79,7 @@ public class AddScheduleActivity extends AppCompatActivity {
                 schedule.name = mEditTextName.getText().toString();
                 schedule.deadline = date;
                 schedule.importance = improtance;
-                schedule.sum = 0;
+                schedule.sum = priority.get_newSum(date,improtance);
                 schedule.checked=false;
                 scheduleDB.scheduleDao().insertAll(schedule);
             }
